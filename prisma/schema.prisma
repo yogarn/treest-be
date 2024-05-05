@@ -14,12 +14,47 @@ datasource db {
 }
 
 model User {
-  id        String    @id @default(uuid())
-  username  String    @unique @db.VarChar(255)
-  password  String    @db.VarChar(255)
-  name      String    @db.VarChar(255)
-  isAdmin   Boolean   @default(false) @db.Boolean
-  image     String?   @db.Text
-  createdAt DateTime? @default(now())
-  updatedAt DateTime? @updatedAt
+  id          String    @id @default(uuid())
+  username    String    @unique @db.VarChar(255)
+  password    String    @db.VarChar(255)
+  name        String    @db.VarChar(255)
+  isAdmin     Boolean   @default(false) @db.Boolean
+  image       String?   @db.Text
+  asFounder   Company[] @relation("asFounder")
+  asCoFounder Company[] @relation("asCoFounder")
+  createdAt   DateTime? @default(now())
+  updatedAt   DateTime? @updatedAt
+}
+
+model Company {
+  id          String      @id @default(uuid())
+  name        String      @db.VarChar(255)
+  description String      @db.Text
+  logo        String?     @db.Text
+  tagline     String      @db.VarChar(255)
+  strengths   Strength[]
+  portfolios  Portfolio[]
+  founder     User        @relation("asFounder", fields: [founderId], references: [id])
+  founderId   String      @db.VarChar(36)
+  coFounder   User?       @relation("asCoFounder", fields: [coFounderId], references: [id])
+  coFounderId String?     @db.VarChar(36)
+  stockSymbol String      @db.VarChar(255)
+}
+
+model Strength {
+  id        String  @id @default(uuid())
+  company   Company @relation(fields: [companyId], references: [id])
+  companyId String  @db.VarChar(36)
+  title     String  @db.VarChar(255)
+  detail    String? @db.Text
+  image     String? @db.Text
+}
+
+model Portfolio {
+  id        String  @id @default(uuid())
+  company   Company @relation(fields: [companyId], references: [id])
+  companyId String  @db.VarChar(255)
+  title     String  @db.VarChar(255)
+  detail    String? @db.Text
+  image     String? @db.Text
 }
