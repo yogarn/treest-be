@@ -1,8 +1,9 @@
-import { BadRequestException, Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
+import { BadRequestException, Body, Controller, Delete, Get, Param, Patch, Post, UseGuards } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { User } from './users.entity';
 import { CreateUser } from './dto/createUser.dto';
 import { UpdateUser } from './dto/updateUser.dto';
+import { Public } from 'src/authentication/authentication.decorator';
 
 @Controller('users')
 export class UsersController {
@@ -18,6 +19,7 @@ export class UsersController {
         return await this.usersService.getUserById(id);
     }
 
+    @Public()
     @Post()
     async createUser(@Body() userDto: CreateUser): Promise<User> {
         if (!userDto.username || !userDto.password || !userDto.name) {
