@@ -3,9 +3,11 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
 import { PrismaModule } from './database/prisma/prisma.module';
-import { AuthenticationModule } from './authentication/authentication.module';
 import { APP_GUARD } from '@nestjs/core';
+import { AuthenticationModule } from './authentication/authentication.module';
+import { AuthorizationModule } from './authorization/authorization.module';
 import { AuthenticationGuard } from './authentication/authentication.guard';
+import { AuthorizationGuard } from './authorization/authorization.guard';
 
 @Module({
   controllers: [AppController],
@@ -15,7 +17,11 @@ import { AuthenticationGuard } from './authentication/authentication.guard';
       provide: APP_GUARD,
       useClass: AuthenticationGuard,
     },
+    {
+      provide: APP_GUARD,
+      useClass: AuthorizationGuard,
+    },
   ],
-  imports: [UsersModule, PrismaModule, AuthenticationModule],
+  imports: [UsersModule, PrismaModule, AuthenticationModule, AuthorizationModule],
 })
 export class AppModule {}

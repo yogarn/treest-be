@@ -4,11 +4,13 @@ import { User } from './users.entity';
 import { CreateUser } from './dto/createUser.dto';
 import { UpdateUser } from './dto/updateUser.dto';
 import { Public } from 'src/authentication/authentication.decorator';
+import { Admin } from 'src/authorization/authorization.decorator';
 
 @Controller('users')
 export class UsersController {
     constructor(private usersService: UsersService) {}
 
+    @Admin()
     @Get()
     async getUsers(): Promise<User[]> {
         return await this.usersService.getUsers();
@@ -42,6 +44,7 @@ export class UsersController {
         });
     }
 
+    @Admin()
     @Delete('/:id')
     async deleteUser(@Param('id') id: string) {
         return await this.usersService.deleteUser(id);
