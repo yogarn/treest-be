@@ -1,8 +1,8 @@
 import { BadRequestException, Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { User } from './users.entity';
-import { createUser } from './dto/createUser.dto';
-import { updateUser } from './dto/updateUser.dto';
+import { CreateUser } from './dto/createUser.dto';
+import { UpdateUser } from './dto/updateUser.dto';
 
 @Controller('users')
 export class UsersController {
@@ -19,7 +19,7 @@ export class UsersController {
     }
 
     @Post()
-    async createUser(@Body() userDto: createUser): Promise<User> {
+    async createUser(@Body() userDto: CreateUser): Promise<User> {
         if (!userDto.username || !userDto.password || !userDto.name) {
             throw new BadRequestException('provide username, password, and name');
         }
@@ -32,7 +32,7 @@ export class UsersController {
     }
 
     @Patch('/:id')
-    async updateUser(@Param('id') id: string, @Body() userDto: updateUser): Promise<User> {
+    async updateUser(@Param('id') id: string, @Body() userDto: UpdateUser): Promise<User> {
         return await this.usersService.updateUser(id, {
             username: userDto.username,
             password: userDto.password,
