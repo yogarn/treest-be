@@ -22,6 +22,7 @@ model User {
   image       String?   @db.Text
   asFounder   Company[] @relation("asFounder")
   asCoFounder Company[] @relation("asCoFounder")
+  news        News[]
   createdAt   DateTime? @default(now())
   updatedAt   DateTime? @updatedAt
 }
@@ -39,22 +40,39 @@ model Company {
   coFounder   User?       @relation("asCoFounder", fields: [coFounderId], references: [id])
   coFounderId String?     @db.VarChar(36)
   stockSymbol String      @db.VarChar(255)
+  createdAt   DateTime?   @default(now())
+  updatedAt   DateTime?   @updatedAt
 }
 
 model Strength {
-  id        String  @id @default(uuid())
-  company   Company @relation(fields: [companyId], references: [id])
-  companyId String  @db.VarChar(36)
-  title     String  @db.VarChar(255)
-  detail    String? @db.Text
-  image     String? @db.Text
+  id        String    @id @default(uuid())
+  company   Company   @relation(fields: [companyId], references: [id])
+  companyId String    @db.VarChar(36)
+  title     String    @db.VarChar(255)
+  detail    String?   @db.Text
+  image     String?   @db.Text
+  createdAt DateTime? @default(now())
+  updatedAt DateTime? @updatedAt
 }
 
 model Portfolio {
-  id        String  @id @default(uuid())
-  company   Company @relation(fields: [companyId], references: [id])
-  companyId String  @db.VarChar(255)
-  title     String  @db.VarChar(255)
-  detail    String? @db.Text
-  image     String? @db.Text
+  id        String    @id @default(uuid())
+  company   Company   @relation(fields: [companyId], references: [id])
+  companyId String    @db.VarChar(255)
+  title     String    @db.VarChar(255)
+  detail    String?   @db.Text
+  image     String?   @db.Text
+  createdAt DateTime? @default(now())
+  updatedAt DateTime? @updatedAt
+}
+
+model News {
+  id        String    @id @default(uuid())
+  title     String    @db.VarChar(255)
+  body      Json      @db.Json
+  thumbnail String    @db.Text
+  creator   User      @relation(fields: [creatorId], references: [id])
+  creatorId String    @db.VarChar(36)
+  createdAt DateTime? @default(now())
+  updatedAt DateTime? @updatedAt
 }
