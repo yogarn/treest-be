@@ -1,5 +1,3 @@
-import { Company } from 'src/companies/companies.entity';
-
 export class Strength {
   id: string;
   company: {
