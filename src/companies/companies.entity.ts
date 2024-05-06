@@ -1,5 +1,3 @@
-import { User } from 'src/users/users.entity';
-
 class Company {
   id: string;
   name: string;
@@ -30,6 +28,16 @@ class Portfolio {
   companyId: string;
   title: string;
   detail: string;
+  image: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+class User {
+  id: string;
+  username: string;
+  name: string;
+  isAdmin: boolean;
   image: string;
   createdAt: Date;
   updatedAt: Date;
