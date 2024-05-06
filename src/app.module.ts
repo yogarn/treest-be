@@ -12,6 +12,7 @@ import { CompaniesModule } from './companies/companies.module';
 import { StrengthModule } from './strength/strengths.module';
 import { PortfoliosModule } from './portfolios/portfolios.module';
 import { NewsModule } from './news/news.module';
+import { CommentsModule } from './comments/comments.module';
 
 @Module({
   controllers: [AppController],
@@ -26,6 +27,6 @@ import { NewsModule } from './news/news.module';
       useClass: AuthorizationGuard,
     },
   ],
-  imports: [UsersModule, PrismaModule, AuthenticationModule, AuthorizationModule, CompaniesModule, StrengthModule, PortfoliosModule, NewsModule],
+  imports: [UsersModule, PrismaModule, AuthenticationModule, AuthorizationModule, CompaniesModule, StrengthModule, PortfoliosModule, NewsModule, CommentsModule],
 })
 export class AppModule {}
