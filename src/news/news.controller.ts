@@ -58,7 +58,6 @@ export class NewsController {
       title: news.title,
       body: news.body,
       thumbnail: news.thumbnail,
-      creator: { connect: { id: request.jwt.userId } },
     });
   }
 

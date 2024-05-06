@@ -7,4 +7,8 @@ export const userSelect = {
   image: true,
   createdAt: true,
   updatedAt: true,
+  asFounder: true,
+  asCoFounder: true,
+  news: true,
+  comments: true,
 };

@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { Portfolio } from './portfolios.entity';
 import { PrismaService } from 'src/database/prisma/prisma.service';
 import { Prisma } from '@prisma/client';
+import { portfolioSelect } from './utils/portfolioSelect';
 
 @Injectable()
 export class PortfoliosService {
@@ -9,9 +10,7 @@ export class PortfoliosService {
 
   async getPortfolios(): Promise<Portfolio[]> {
     return await this.prismaService.portfolio.findMany({
-      include: {
-        company: true,
-      },
+      select: portfolioSelect,
     });
   }
 
@@ -20,9 +19,7 @@ export class PortfoliosService {
       where: {
         id,
       },
-      include: {
-        company: true,
-      },
+      select: portfolioSelect,
     });
   }
 
@@ -31,9 +28,7 @@ export class PortfoliosService {
   ): Promise<Portfolio> {
     return await this.prismaService.portfolio.create({
       data: portfolio,
-      include: {
-        company: true,
-      },
+      select: portfolioSelect,
     });
   }
 
@@ -46,9 +41,7 @@ export class PortfoliosService {
         id,
       },
       data: portfolio,
-      include: {
-        company: true,
-      },
+      select: portfolioSelect,
     });
   }
 
@@ -57,9 +50,7 @@ export class PortfoliosService {
       where: {
         id,
       },
-      include: {
-        company: true,
-      },
+      select: portfolioSelect,
     });
   }
 }

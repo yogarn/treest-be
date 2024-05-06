@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/database/prisma/prisma.service';
 import { Company } from './companies.entity';
 import { Prisma } from '@prisma/client';
+import { companySelect } from './utils/companySelect';
 
 @Injectable()
 export class CompaniesService {
@@ -9,12 +10,7 @@ export class CompaniesService {
 
   async getCompanies(): Promise<Company[]> {
     return await this.prismaService.company.findMany({
-      include: {
-        strengths: true,
-        portfolios: true,
-        founder: true,
-        coFounder: true,
-      },
+      select: companySelect
     });
   }
 
@@ -23,24 +19,14 @@ export class CompaniesService {
       where: {
         id,
       },
-      include: {
-        strengths: true,
-        portfolios: true,
-        founder: true,
-        coFounder: true,
-      },
+      select: companySelect
     });
   }
 
   async createCompany(company: Prisma.CompanyCreateInput): Promise<Company> {
     return await this.prismaService.company.create({
       data: company,
-      include: {
-        strengths: true,
-        portfolios: true,
-        founder: true,
-        coFounder: true,
-      },
+      select: companySelect
     });
   }
 
@@ -53,12 +39,7 @@ export class CompaniesService {
         id,
       },
       data: company,
-      include: {
-        strengths: true,
-        portfolios: true,
-        founder: true,
-        coFounder: true,
-      },
+      select: companySelect
     });
   }
 
@@ -67,12 +48,7 @@ export class CompaniesService {
       where: {
         id,
       },
-      include: {
-        strengths: true,
-        portfolios: true,
-        founder: true,
-        coFounder: true,
-      },
+      select: companySelect
     });
   }
 }

@@ -3,6 +3,7 @@ import { PortfoliosService } from './portfolios.service';
 import { Admin } from 'src/authorization/authorization.decorator';
 import { Portfolio } from './portfolios.entity';
 import { CreatePortfolio } from './dto/createPortfolio.dto';
+import { UpdatePortfolio } from './dto/updatePortfolio.dto';
 
 @Controller('portfolios')
 export class PortfoliosController {
@@ -37,7 +38,7 @@ export class PortfoliosController {
 
   @Admin()
   @Patch('/:id')
-  async updatePortfolio(@Param('id') id: string, @Body() portfolio: Portfolio): Promise<Portfolio> {
+  async updatePortfolio(@Param('id') id: string, @Body() portfolio: UpdatePortfolio): Promise<Portfolio> {
     return await this.portfoliosService.updatePortfolio(id, {
         title: portfolio.title,
         detail: portfolio.detail,

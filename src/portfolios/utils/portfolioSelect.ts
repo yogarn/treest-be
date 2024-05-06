@@ -1,0 +1,10 @@
+export const portfolioSelect = {
+  id: true,
+  title: true,
+  detail: true,
+  image: true,
+  companyId: false,
+  company: true,
+  createdAt: true,
+  updatedAt: true,
+};

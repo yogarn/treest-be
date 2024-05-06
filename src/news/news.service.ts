@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/database/prisma/prisma.service';
 import { News } from './news.entity';
 import { Prisma } from '@prisma/client';
+import { newsSelect } from './utils/newsSelect';
 
 @Injectable()
 export class NewsService {
@@ -9,9 +10,7 @@ export class NewsService {
 
   async getNews(): Promise<News[]> {
     return await this.prismaService.news.findMany({
-      include: {
-        creator: true,
-      },
+      select: newsSelect,
     });
   }
 
@@ -20,18 +19,14 @@ export class NewsService {
       where: {
         id,
       },
-      include: {
-        creator: true,
-      },
+      select: newsSelect,
     });
   }
 
   async createNews(news: Prisma.NewsCreateInput): Promise<News> {
     return await this.prismaService.news.create({
       data: news,
-      include: {
-        creator: true,
-      },
+      select: newsSelect,
     });
   }
 
@@ -41,9 +36,7 @@ export class NewsService {
         id,
       },
       data: news,
-      include: {
-        creator: true,
-      },
+      select: newsSelect,
     });
   }
 
@@ -52,9 +45,7 @@ export class NewsService {
       where: {
         id,
       },
-      include: {
-        creator: true,
-      },
+      select: newsSelect,
     });
   }
 }

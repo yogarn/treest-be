@@ -11,7 +11,7 @@ export class UsersService {
 
   async getUsers(): Promise<User[]> {
     return await this.prismaService.user.findMany({
-      select: userSelect 
+      select: userSelect,
     });
   }
 
@@ -20,7 +20,7 @@ export class UsersService {
       where: {
         id,
       },
-      select: userSelect
+      select: userSelect,
     });
   }
 
@@ -29,7 +29,7 @@ export class UsersService {
       where: {
         username,
       },
-      select: userSelect
+      select: userSelect,
     });
   }
 
@@ -38,7 +38,7 @@ export class UsersService {
 
     return await this.prismaService.user.create({
       data: user,
-      select: userSelect
+      select: userSelect,
     });
   }
 
@@ -52,7 +52,7 @@ export class UsersService {
         id,
       },
       data: user,
-      select: userSelect
+      select: userSelect,
     });
   }
 
@@ -61,7 +61,7 @@ export class UsersService {
       where: {
         id,
       },
-      select: userSelect
+      select: userSelect,
     });
   }
 }
