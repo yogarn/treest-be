@@ -29,4 +29,4 @@ class Portfolio {
     image: string;
 }
 
-export { Company, Strength };
+export { Company };

@@ -9,6 +9,7 @@ import { AuthorizationModule } from './authorization/authorization.module';
 import { AuthenticationGuard } from './authentication/authentication.guard';
 import { AuthorizationGuard } from './authorization/authorization.guard';
 import { CompaniesModule } from './companies/companies.module';
+import { StrengthModule } from './strength/strengths.module';
 
 @Module({
   controllers: [AppController],
@@ -23,6 +24,6 @@ import { CompaniesModule } from './companies/companies.module';
       useClass: AuthorizationGuard,
     },
   ],
-  imports: [UsersModule, PrismaModule, AuthenticationModule, AuthorizationModule, CompaniesModule],
+  imports: [UsersModule, PrismaModule, AuthenticationModule, AuthorizationModule, CompaniesModule, StrengthModule],
 })
 export class AppModule {}
