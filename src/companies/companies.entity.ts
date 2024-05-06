@@ -1,4 +1,4 @@
-import { User } from "src/users/users.entity";
+import { User } from 'src/users/users.entity';
 
 class Company {
   id: string;
@@ -11,6 +11,8 @@ class Company {
   founder: User;
   coFounder: User;
   stockSymbol: string;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 class Strength {
@@ -19,14 +21,18 @@ class Strength {
   title: string;
   detail: string;
   image: string;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 class Portfolio {
-    id: string;
-    companyId: string;
-    title: string;
-    detail: string;
-    image: string;
+  id: string;
+  companyId: string;
+  title: string;
+  detail: string;
+  image: string;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 export { Company };
