@@ -35,9 +35,9 @@ model Company {
   tagline     String      @db.VarChar(255)
   strengths   Strength[]
   portfolios  Portfolio[]
-  founder     User        @relation("asFounder", fields: [founderId], references: [id])
+  founder     User        @relation("asFounder", fields: [founderId], references: [id], onDelete: Cascade)
   founderId   String      @db.VarChar(36)
-  coFounder   User?       @relation("asCoFounder", fields: [coFounderId], references: [id])
+  coFounder   User?       @relation("asCoFounder", fields: [coFounderId], references: [id], onDelete: Cascade)
   coFounderId String?     @db.VarChar(36)
   stockSymbol String      @db.VarChar(255)
   createdAt   DateTime?   @default(now())
@@ -46,7 +46,7 @@ model Company {
 
 model Strength {
   id        String    @id @default(uuid())
-  company   Company   @relation(fields: [companyId], references: [id])
+  company   Company   @relation(fields: [companyId], references: [id], onDelete: Cascade)
   companyId String    @db.VarChar(36)
   title     String    @db.VarChar(255)
   detail    String?   @db.Text
@@ -57,7 +57,7 @@ model Strength {
 
 model Portfolio {
   id        String    @id @default(uuid())
-  company   Company   @relation(fields: [companyId], references: [id])
+  company   Company   @relation(fields: [companyId], references: [id], onDelete: Cascade)
   companyId String    @db.VarChar(255)
   title     String    @db.VarChar(255)
   detail    String?   @db.Text
@@ -70,8 +70,8 @@ model News {
   id        String    @id @default(uuid())
   title     String    @db.VarChar(255)
   body      Json      @db.Json
-  thumbnail String    @db.Text
-  creator   User      @relation(fields: [creatorId], references: [id])
+  thumbnail String?   @db.Text
+  creator   User      @relation(fields: [creatorId], references: [id], onDelete: Cascade)
   creatorId String    @db.VarChar(36)
   createdAt DateTime? @default(now())
   updatedAt DateTime? @updatedAt
