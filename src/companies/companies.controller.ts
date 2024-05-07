@@ -7,6 +7,7 @@ import {
   Param,
   Patch,
   Post,
+  Query,
 } from '@nestjs/common';
 import { CompaniesService } from './companies.service';
 import { Company } from './companies.entity';
@@ -21,8 +22,8 @@ export class CompaniesController {
 
   @Public()
   @Get()
-  async getCompanies(): Promise<Company[]> {
-    return this.companiesService.getCompanies();
+  async getCompanies(@Query() query): Promise<Company[]> {
+    return this.companiesService.getCompanies(query);
   }
 
   @Public()
