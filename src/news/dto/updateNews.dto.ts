@@ -4,4 +4,5 @@ export class UpdateNews {
     title: string;
     body: JsonValue;
     thumbnail: string;
+    companyId: string;
 }

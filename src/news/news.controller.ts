@@ -8,6 +8,7 @@ import {
   Param,
   Patch,
   Post,
+  Query,
   Req,
 } from '@nestjs/common';
 import { NewsService } from './news.service';
@@ -23,8 +24,8 @@ export class NewsController {
 
   @Public()
   @Get()
-  async getNews(): Promise<News[]> {
-    return this.newsService.getNews();
+  async getNews(@Query() query): Promise<News[]> {
+    return this.newsService.getNews(query);
   }
 
   @Public()
@@ -44,6 +45,7 @@ export class NewsController {
       body: news.body,
       thumbnail: news.thumbnail,
       creator: { connect: { id: request.jwt.userId } },
+      company: news.companyId ? { connect: { id: news.companyId } } : undefined,
     });
   }
 
@@ -58,6 +60,7 @@ export class NewsController {
       title: news.title,
       body: news.body,
       thumbnail: news.thumbnail,
+      company: news.companyId ? { connect: { id: news.companyId } } : undefined,
     });
   }
 

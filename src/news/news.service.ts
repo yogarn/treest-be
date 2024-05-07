@@ -3,14 +3,25 @@ import { PrismaService } from 'src/database/prisma/prisma.service';
 import { News } from './news.entity';
 import { Prisma } from '@prisma/client';
 import { newsSelect } from './utils/newsSelect';
+import { NewsQuery } from './utils/newsQuery';
 
 @Injectable()
 export class NewsService {
   constructor(private prismaService: PrismaService) {}
 
-  async getNews(): Promise<News[]> {
+  async getNews(query: NewsQuery): Promise<News[]> {
+    let filter: any = {};
+
+    if (query.title || query.body) {
+      filter.OR = [];
+      if (query.title) {
+        filter.OR.push({ title: { search: query.title } });
+      }
+    }
+
     return await this.prismaService.news.findMany({
       select: newsSelect,
+      where: filter,
     });
   }
 

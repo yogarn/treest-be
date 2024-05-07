@@ -1,11 +1,14 @@
+import { JsonValue } from "@prisma/client/runtime/library";
+
 class Company {
   id: string;
   name: string;
   description: string;
-  logo?: string;
+  logo: string;
   tagline: string;
   strengths: Strength[];
   portfolios: Portfolio[];
+  news: News[];
   founder: User;
   coFounder: User;
   stockSymbol: string;
@@ -29,6 +32,16 @@ class Portfolio {
   title: string;
   detail: string;
   image: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+class News {
+  id: string;
+  title: string;
+  body: JsonValue;
+  thumbnail: string;
+  creator: User;
   createdAt: Date;
   updatedAt: Date;
 }

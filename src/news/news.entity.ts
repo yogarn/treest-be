@@ -7,6 +7,7 @@ export class News {
   thumbnail: string;
   creator: User;
   comments: Comment[];
+  company: Company;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -26,6 +27,17 @@ class Comment {
   newsId: string;
   userId: string;
   content: JsonValue;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+class Company {
+  id: string;
+  name: string;
+  description: string;
+  logo: string;
+  tagline: string;
+  stockSymbol: string;
   createdAt: Date;
   updatedAt: Date;
 }
