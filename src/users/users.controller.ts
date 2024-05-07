@@ -1,4 +1,4 @@
-import { BadRequestException, Body, Controller, Delete, Get, Param, Patch, Post, UseGuards } from '@nestjs/common';
+import { BadRequestException, Body, Controller, Delete, Get, Param, Patch, Post, Query, UseGuards } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { User } from './users.entity';
 import { CreateUser } from './dto/createUser.dto';
@@ -12,8 +12,8 @@ export class UsersController {
 
     @Admin()
     @Get()
-    async getUsers(): Promise<User[]> {
-        return await this.usersService.getUsers();
+    async getUsers(@Query() query): Promise<User[]> {
+        return await this.usersService.getUsers(query);
     }
 
     @Get('/:id')
