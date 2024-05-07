@@ -3,14 +3,69 @@ import { Portfolio } from './portfolios.entity';
 import { PrismaService } from 'src/database/prisma/prisma.service';
 import { Prisma } from '@prisma/client';
 import { portfolioSelect } from './utils/portfolioSelect';
+import { PortfolioQuery } from './utils/portfolioQuery';
 
 @Injectable()
 export class PortfoliosService {
   constructor(private prismaService: PrismaService) {}
 
-  async getPortfolios(): Promise<Portfolio[]> {
+  async getPortfolios(query: PortfolioQuery): Promise<Portfolio[]> {
+    let filter: any = {};
+    let orderBy: any = {};
+
+    let take = parseInt(query.limit);
+    let page = parseInt(query.page);
+
+    if (!take) {
+      take = parseInt(process.env.DEFAULT_LIMIT);
+    }
+
+    if (!page) {
+      page = 1;
+    }
+
+    const skip = (page - 1) * take >= 0 ? (page - 1) * take : 0;
+
+    if (
+      query.title ||
+      query.detail ||
+      query.companyId ||
+      query.before ||
+      query.after
+    ) {
+      filter.OR = [];
+      if (query.title) {
+        filter.OR.push({ title: { search: query.title } });
+      }
+      if (query.detail) {
+        filter.OR.push({ detail: { search: query.detail } });
+      }
+      if (query.companyId) {
+        filter.OR.push({ companyId: { search: query.companyId } });
+      }
+      if (query.before) {
+        filter.OR.push({ createdAt: { lte: new Date(query.before) } });
+      }
+      if (query.after) {
+        filter.OR.push({ createdAt: { gte: new Date(query.after) } });
+      }
+    }
+
+    if (query.sort) {
+      let sortOrder = 'desc';
+      if (query.sort.startsWith('-')) {
+        query.sort = query.sort.substring(1);
+        sortOrder = 'asc';
+      }
+      orderBy[query.sort] = sortOrder;
+    }
+
     return await this.prismaService.portfolio.findMany({
+      skip,
+      take,
       select: portfolioSelect,
+      where: filter,
+      orderBy,
     });
   }
 

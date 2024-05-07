@@ -1,4 +1,4 @@
-import { BadRequestException, Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
+import { BadRequestException, Body, Controller, Delete, Get, Param, Patch, Post, Query } from '@nestjs/common';
 import { PortfoliosService } from './portfolios.service';
 import { Admin } from 'src/authorization/authorization.decorator';
 import { Portfolio } from './portfolios.entity';
@@ -11,8 +11,8 @@ export class PortfoliosController {
 
   @Admin()
   @Get()
-  async getPortfolios(): Promise<Portfolio[]> {
-    return await this.portfoliosService.getPortfolios();
+  async getPortfolios(@Query() query): Promise<Portfolio[]> {
+    return await this.portfoliosService.getPortfolios(query);
   }
 
   @Get('/:id')
