@@ -13,6 +13,7 @@ import { StrengthModule } from './strength/strengths.module';
 import { PortfoliosModule } from './portfolios/portfolios.module';
 import { NewsModule } from './news/news.module';
 import { CommentsModule } from './comments/comments.module';
+import { StorageModule } from './storage/storage.module';
 
 @Module({
   controllers: [AppController],
@@ -27,6 +28,6 @@ import { CommentsModule } from './comments/comments.module';
       useClass: AuthorizationGuard,
     },
   ],
-  imports: [UsersModule, PrismaModule, AuthenticationModule, AuthorizationModule, CompaniesModule, StrengthModule, PortfoliosModule, NewsModule, CommentsModule],
+  imports: [UsersModule, PrismaModule, AuthenticationModule, AuthorizationModule, CompaniesModule, StrengthModule, PortfoliosModule, NewsModule, CommentsModule, StorageModule],
 })
 export class AppModule {}
