@@ -1,7 +1,7 @@
-export class NewsQuery {
-  title: string;
-  creatorId: string;
-  
+export class CommentQuery {
+  newsId: string;
+  userId: string;
+
   before: string;
   after: string;
 

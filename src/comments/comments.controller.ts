@@ -1,4 +1,4 @@
-import { BadRequestException, Body, Controller, Delete, Get, Param, Patch, Post, Req } from '@nestjs/common';
+import { BadRequestException, Body, Controller, Delete, Get, Param, Patch, Post, Query, Req } from '@nestjs/common';
 import { CommentsService } from './comments.service';
 import { Comment } from './comments.entity';
 import { Admin } from 'src/authorization/authorization.decorator';
@@ -11,8 +11,8 @@ export class CommentsController {
 
   @Admin()
   @Get()
-  async getComments(): Promise<Comment[]> {
-    return await this.commentsService.getComments();
+  async getComments(@Query() query): Promise<Comment[]> {
+    return await this.commentsService.getComments(query);
   }
 
   @Get('/:id')
