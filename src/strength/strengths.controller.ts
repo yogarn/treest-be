@@ -7,13 +7,13 @@ import {
   Param,
   Patch,
   Post,
+  Query,
 } from '@nestjs/common';
 import { StrengthsService } from './strengths.service';
 import { Strength } from './strengths.entity';
 import { Admin } from 'src/authorization/authorization.decorator';
 import { Public } from 'src/authentication/authentication.decorator';
 import { CreateStrength } from './dto/createStrength.dto';
-import { connect } from 'http2';
 import { UpdateStrength } from './dto/updateStrenth.dto';
 
 @Controller('strengths')
@@ -22,8 +22,8 @@ export class StrengthsController {
 
   @Admin()
   @Get()
-  async getStrengths(): Promise<Strength[]> {
-    return await this.strengthsService.getStrengths();
+  async getStrengths(@Query() query): Promise<Strength[]> {
+    return await this.strengthsService.getStrengths(query);
   }
 
   @Public()
