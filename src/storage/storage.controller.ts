@@ -4,15 +4,18 @@ import {
   Param,
   Post,
   UploadedFile,
+  UseGuards,
   UseInterceptors,
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { StorageService } from './storage.service';
+import { ThrottlerGuard } from '@nestjs/throttler';
 
 @Controller('storage')
 export class StorageController {
   constructor(private storageService: StorageService) {}
 
+  @UseGuards(ThrottlerGuard)
   @Post()
   @UseInterceptors(FileInterceptor('file'))
   async uploadFile(

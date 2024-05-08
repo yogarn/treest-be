@@ -14,6 +14,7 @@ import { PortfoliosModule } from './portfolios/portfolios.module';
 import { NewsModule } from './news/news.module';
 import { CommentsModule } from './comments/comments.module';
 import { StorageModule } from './storage/storage.module';
+import { ThrottlerModule } from '@nestjs/throttler';
 
 @Module({
   controllers: [AppController],
@@ -28,6 +29,23 @@ import { StorageModule } from './storage/storage.module';
       useClass: AuthorizationGuard,
     },
   ],
-  imports: [UsersModule, PrismaModule, AuthenticationModule, AuthorizationModule, CompaniesModule, StrengthModule, PortfoliosModule, NewsModule, CommentsModule, StorageModule],
+  imports: [
+    UsersModule,
+    PrismaModule,
+    AuthenticationModule,
+    AuthorizationModule,
+    CompaniesModule,
+    StrengthModule,
+    PortfoliosModule,
+    NewsModule,
+    CommentsModule,
+    StorageModule,
+    ThrottlerModule.forRoot([
+      {
+        ttl: 3600,
+        limit: 10,
+      },
+    ]),
+  ],
 })
 export class AppModule {}
