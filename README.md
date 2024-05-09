@@ -6,10 +6,17 @@
 
 Investasi bijak, untuk bumi, untuk masa depan: menuju pertumbuhan ekonomi hijau yang berkelanjutan. Treest, terobasan terbaru yang menyediakan informasi terkini seputar perusahaan dan start-up yang bergerak di bidang lingkungan dan siap menerima investasi anda.  
 
+For more information about our API, please visit the documentation page below.  
+https://documenter.getpostman.com/view/32730747/2sA3JGf3o3
+
+You can directly access our API by using the link provided below or running it in your local environment (see Running the application section).  
+https://slashcom-2024-be.vercel.app/
+
 ## Technology
 There are several technologies used in this repository:
 - NestJS
 - Supabase
+- Prisma ORM
 
 ## Installation
 
