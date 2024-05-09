@@ -1,5 +1,5 @@
 {
-  "name": "slashcom-2024-be",
+  "name": "treest-be",
   "prisma": {
     "seed": "ts-node prisma/seed.ts"
   },
