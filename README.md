@@ -1,3 +1,7 @@
+# Treest (Backend)
+
+![image](https://github.com/yogarn/slashcom-2024-be/assets/144443155/187895b6-25dc-4a7d-a5a1-1785bb12fd74)
+
 ## Description
 
 Investasi bijak, untuk bumi, untuk masa depan: menuju pertumbuhan ekonomi hijau yang berkelanjutan. Treest, terobasan terbaru yang menyediakan informasi terkini seputar perusahaan dan start-up yang bergerak di bidang lingkungan dan siap menerima investasi anda.  
