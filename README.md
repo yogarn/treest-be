@@ -12,6 +12,8 @@ https://documenter.getpostman.com/view/32730747/2sA3JGf3o3
 You can directly access our API by using the link provided below or running it in your local environment (see Running the application section).  
 https://treest-be.vercel.app/
 
+For the current development, we already have predefined user account with username `admin` and password `root` for testing purposes. This account capable of creating a new company and access administrator only routes, such as view all users, delete users, delete company, delete news, delete comments, etc.
+
 ## Technology
 There are several technologies used in this repository:
 - NestJS
@@ -22,6 +24,22 @@ There are several technologies used in this repository:
 
 ```bash
 $ npm install
+```
+
+## Database Migrations
+Before continuing, make sure to configure your prisma according to your database in .env and in prisma.schema.  
+
+Push prisma.schema to the database  
+```bash
+$ npx prisma db push
+```
+Run the prisma seeder (optional)
+```bash
+$ npx prisma db seed
+```
+Generate prisma clients
+```bash
+$ npx prisma generate
 ```
 
 ## Running the app
