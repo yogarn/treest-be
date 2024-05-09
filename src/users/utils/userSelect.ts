@@ -3,6 +3,7 @@ export const userSelect = {
   username: true,
   password: false,
   name: true,
+  email: true,
   isAdmin: true,
   image: true,
   asFounder: true,

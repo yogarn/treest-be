@@ -19,6 +19,7 @@ model User {
   username    String    @unique @db.VarChar(255)
   password    String    @db.VarChar(255)
   name        String    @db.VarChar(255)
+  email       String    @unique @db.VarChar(255)
   isAdmin     Boolean   @default(false) @db.Boolean
   image       String?   @db.Text
   asFounder   Company[] @relation("asFounder")

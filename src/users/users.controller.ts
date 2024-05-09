@@ -24,14 +24,15 @@ export class UsersController {
     @Public()
     @Post()
     async createUser(@Body() userDto: CreateUser): Promise<User> {
-        if (!userDto.username || !userDto.password || !userDto.name) {
-            throw new BadRequestException('provide username, password, and name');
+        if (!userDto.username || !userDto.password || !userDto.name || !userDto.email) {
+            throw new BadRequestException('provide username, password, name, and email');
         }
 
         return await this.usersService.createUser({
             username: userDto.username,
             password: userDto.password,
             name: userDto.name,
+            email: userDto.email,
         });
     }
 
@@ -41,6 +42,7 @@ export class UsersController {
             username: userDto.username,
             password: userDto.password,
             name: userDto.name,
+            email: userDto.email,
         });
     }
 
