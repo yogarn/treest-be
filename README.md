@@ -1,6 +1,9 @@
-# Treest (Backend)
+# Treest
 
 ![image](https://github.com/yogarn/slashcom-2024-be/assets/144443155/187895b6-25dc-4a7d-a5a1-1785bb12fd74)
+
+> [!NOTE]
+> This project was created as a submission for Slashcom Hackathon 2024. It marks the beginning of my journey in NestJS development. While it's far from perfect, it was a valuable learning experience and a solid first attempt.
 
 ## Description
 
